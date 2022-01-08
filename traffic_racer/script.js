@@ -1,4 +1,4 @@
-/* Arshad Muhammed */
+
 $(function() {
 
     var anim_id;
@@ -9,6 +9,7 @@ $(function() {
     var car_1 = $('#car_1');
     var car_2 = $('#car_2');
     var car_3 = $('#car_3');
+    var car_4 = $('#car_4');
     var line_1 = $('#line_1');
     var line_2 = $('#line_2');
     var line_3 = $('#line_3');
@@ -30,8 +31,8 @@ $(function() {
 
     var score_counter = 1;
 
-    var speed = 2;
-    var line_speed = 5;
+    var speed = 3;
+    var line_speed = 6;
 
     var move_right = false;
     var move_left = false;
@@ -44,13 +45,13 @@ $(function() {
     $(document).on('keydown', function(e) {
         if (game_over === false) {
             var key = e.keyCode;
-            if (key === 37 && move_left === false) {
+            if (key === 65 && move_left === false) {
                 move_left = requestAnimationFrame(left);
-            } else if (key === 39 && move_right === false) {
+            } else if (key === 68 && move_right === false) {
                 move_right = requestAnimationFrame(right);
-            } else if (key === 38 && move_up === false) {
+            } else if (key === 87 && move_up === false) {
                 move_up = requestAnimationFrame(up);
-            } else if (key === 40 && move_down === false) {
+            } else if (key === 83 && move_down === false) {
                 move_down = requestAnimationFrame(down);
             }
         }
@@ -59,16 +60,16 @@ $(function() {
     $(document).on('keyup', function(e) {
         if (game_over === false) {
             var key = e.keyCode;
-            if (key === 37) {
+            if (key === 65) {
                 cancelAnimationFrame(move_left);
                 move_left = false;
-            } else if (key === 39) {
+            } else if (key === 68) {
                 cancelAnimationFrame(move_right);
                 move_right = false;
-            } else if (key === 38) {
+            } else if (key === 87) {
                 cancelAnimationFrame(move_up);
                 move_up = false;
-            } else if (key === 40) {
+            } else if (key === 83) {
                 cancelAnimationFrame(move_down);
                 move_down = false;
             }
@@ -107,7 +108,7 @@ $(function() {
     anim_id = requestAnimationFrame(repeat);
 
     function repeat() {
-        if (collision(car, car_1) || collision(car, car_2) || collision(car, car_3)) {
+        if (collision(car, car_1) || collision(car, car_2) || collision(car, car_3) || collision(car, car_4)) {
             stop_the_game();
             return;
         }
@@ -125,6 +126,7 @@ $(function() {
         car_down(car_1);
         car_down(car_2);
         car_down(car_3);
+        car_down(car_4);
 
         line_down(line_1);
         line_down(line_2);
